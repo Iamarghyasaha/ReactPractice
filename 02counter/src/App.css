@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+    
+    background-color: rgba(20, 141, 107, 0.244);
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+button {
+    background-color: green;
+    margin: 10px;
+    color: white;
+    border-radius: 5px;
+    padding: 20px;
+    border: 2px solid rgb(113, 150, 113);
+    cursor: pointer;
+}
+
+span {
+    border: 2px solid black;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgb(197, 172, 134);
+}
