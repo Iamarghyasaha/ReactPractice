@@ -1,11 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
-
 import { useState,useCallback,useEffect,useRef } from 'react'
 
 
 function App() {
-  const [length,setLength] = useState(8);
+  const [length,setLength] = useState(12);
   const [numberAllowed,setNumberAllowed] = useState(false);
   const [symbolAllowed,setsymbolAllowed] = useState(false);
   const [password,setPassword] = useState("");
@@ -40,18 +37,18 @@ useEffect(()=>{
 
   return (
     <>
-    <h1 className='w-full flex flext-wrap justify-center font-bold text-grey-700 mt-12'
-    >Welcome, Genarate Your customized password </h1>
+    <h1 className='w-full flex flext-wrap justify-center font-bold text-white text-grey-700 mt-12 text-4xl'
+    >Welcome, Genarate Your Customized Password </h1>
      <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-700 text-orange-700">
         <h1 className='text-white text-center m-4'>Password Generator</h1>
         <div className='flex shadow rounded-lg overflow-hidden mb-4'>
           <input
-            ref={passRef}
             type='text'
             value={password}
             className='outline-none w-full py-1 px-3 font-bold'
-            placeholder='Your Password'
+            //placeholder='Your Password'
             readOnly
+            ref={passRef}
           />
           <button 
           className='outline-none bg-blue-500 text-white px-3 py-3 shrink-0 hover:bg-sky-700'
@@ -87,6 +84,11 @@ useEffect(()=>{
               <label className='ml-1 text-white'>Symbols</label>
             </div>
         </div>
+     </div>
+     <div className= "flex justify-center gap-x-1 ml-4">
+          <input 
+          className='rounded-md w-2/6 p-5'
+          type='text' placeholder='Clipboard'></input>
      </div>
     </>
   )
