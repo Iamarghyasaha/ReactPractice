@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { useState,useCallback,useEffect } from 'react'
+
+import { useState,useCallback,useEffect,useRef } from 'react'
 
 
 function App() {
@@ -8,6 +9,9 @@ function App() {
   const [numberAllowed,setNumberAllowed] = useState(false);
   const [symbolAllowed,setsymbolAllowed] = useState(false);
   const [password,setPassword] = useState("");
+  //useRef hook
+  const passRef = useRef("");
+
   const passwordGenerator = useCallback(()=>{
     let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -22,24 +26,37 @@ function App() {
     }
     setPassword(pass);
   },[length,numberAllowed,symbolAllowed,setPassword])
+
+  const copyPassword = useCallback(()=>{
+    passRef.current?.select();
+    // for selecting specific range
+    // passRef.current?.setSelectionRange(0,3)
+    window.navigator.clipboard.writeText(password);
+  },[password])
+
 useEffect(()=>{
   passwordGenerator()
 },[length,numberAllowed,symbolAllowed,passwordGenerator])
+
   return (
     <>
-     
+    <h1 className='w-full flex flext-wrap justify-center font-bold text-grey-700 mt-12'
+    >Welcome, Genarate Your customized password </h1>
      <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-700 text-orange-700">
         <h1 className='text-white text-center m-4'>Password Generator</h1>
         <div className='flex shadow rounded-lg overflow-hidden mb-4'>
           <input
+            ref={passRef}
             type='text'
             value={password}
-            className='outline-none w-full py-1 px-3'
+            className='outline-none w-full py-1 px-3 font-bold'
             placeholder='Your Password'
             readOnly
           />
           <button 
-          className='outline-none bg-blue-500 text-white px-3 py-3 shrink-0'>Copy</button>
+          className='outline-none bg-blue-500 text-white px-3 py-3 shrink-0 hover:bg-sky-700'
+          onClick={copyPassword}
+          >Copy</button>
         </div>
         <div className='flex text-sm gap-x-2'>
             <div className='flex items-center gap-x-1 ml-4'>
