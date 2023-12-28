@@ -8,7 +8,7 @@ function App() {
   const [password,setPassword] = useState("");
   //useRef hook
   const passRef = useRef("");
-
+// callBack used is used for memoization of function (optimizing through caching function reference) 
   const passwordGenerator = useCallback(()=>{
     let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -30,7 +30,7 @@ function App() {
     // passRef.current?.setSelectionRange(0,3)
     window.navigator.clipboard.writeText(password);
   },[password])
-
+// when ever the [dependencies] touched useEffect trigger the function
 useEffect(()=>{
   passwordGenerator()
 },[length,numberAllowed,symbolAllowed,passwordGenerator])
@@ -52,7 +52,7 @@ useEffect(()=>{
           />
           <button 
           className='outline-none bg-blue-500 text-white px-3 py-3 shrink-0 hover:bg-sky-700'
-          onClick={copyPassword}
+          onClick={()=>copyPassword()}
           >Copy</button>
         </div>
         <div className='flex text-sm gap-x-2'>
