@@ -1,15 +1,13 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 import { useState } from 'react'
 import { InputBox } from './components'
 import useCurrencyInfo from './hooks/useCurrencyInfo'
 function App() {
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState()
   const [from,setFrom] = useState("usd")
   const [to,setTo] = useState("inr")
-  const [convertedAmount,SetConvertedAmount] = useState(0)
+  const [convertedAmount,SetConvertedAmount] = useState()
   const currencyInfo = useCurrencyInfo(from)
-  const options = Object.keys(currencyInfo)
+  const options = Object.keys(currencyInfo)// take all keys of data from the custom hook
   const swap = (()=>{
     setFrom(to)
     setTo(from)
@@ -18,7 +16,10 @@ function App() {
   })
 
   const convert =()=>{
-    SetConvertedAmount(amount * currencyInfo[to])
+    SetConvertedAmount(amount * currencyInfo[to])//"to" used to convert the from to "to"e.g.,{currencyInfo["inr"]}
+  }
+  function refreshPage() {
+    window.location.reload(false);
   }
   return (
     <>
@@ -41,6 +42,7 @@ function App() {
                                 label="From"
                                 amount={amount}
                                 currencyOptions={options}
+                                // onCurrencychange={(currency)=>setAmount(amount)}
                                 onCurrencychange={(currency) => setFrom(currency)}
                                 selectCurrency={from}
                                 onAmountChange={(amount)=>setAmount(amount)}
@@ -68,6 +70,11 @@ function App() {
                         </div>
                         <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg">
                             Convert {from.toUpperCase()} to {to.toUpperCase()}
+                        </button>
+                        <button type="submit" 
+                        onClick={refreshPage}
+                         className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg mt-4">
+                            Clear All
                         </button>
                     </form>
                 </div>

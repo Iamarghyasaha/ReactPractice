@@ -7,8 +7,8 @@ import React from 'react'
 function InputBox({
   label,
   amount,
-  onAmountChange,
-  onCurrencychange,
+  onAmountChange,//function will change the amount
+  onCurrencychange,// function will change the currency
   currencyOptions=[],
   selectCurrency = "usd",
   amountDisable = false,
@@ -19,18 +19,18 @@ function InputBox({
   return (
       <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
           <div className="w-1/2">
-              <label htmlFor={amountInputId} 
+              <label htmlFor={amountInputId} //userId binding for better approach
               className="text-black/40 mb-2 inline-block">
                   {label}
               </label>
               <input
-                  id={amountInputId}
+                  id={amountInputId} //userId binding for better approach
                   className="outline-none w-full bg-transparent py-1.5"
                   type="number"
                   placeholder="Amount"
                   disabled={amountDisable}
                   value={amount}
-                  onChange={(e)=>onAmountChange && onAmountChange(Number(e.target.value))}
+                  onChange={(e)=> onAmountChange && onAmountChange(Number(e.target.value))}//concept 31:00mm
               />
           </div>
           <div className="w-1/2 flex flex-wrap justify-end text-right">
