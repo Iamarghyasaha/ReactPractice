@@ -4,10 +4,10 @@ function App() {
   const currentdate = new Date();
   console.log(currentdate);
   const [num, setnum ]= useState(0) 
-  // num,setnum is method num is current state and setnum is the updated State
+  // num is variable,setnum is method num is current state and setnum is the updated State
 
 const addValue=()=>{
-  console.log("Clicked",Math.random)
+  //console.log("Clicked",Math.random)
   if(num<20){
     setnum(num +1)
     setnum(prev => {return prev +1})
